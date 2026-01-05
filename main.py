@@ -283,7 +283,7 @@ def main(page: ft.Page):
 
     frame_top = ft.Container(
         content=ft.WindowDragArea(header_content), 
-        height=80, 
+        height=60, 
         **STYL_RAMKI_TOP 
     )
     
@@ -924,7 +924,7 @@ def main(page: ft.Page):
 
     frame_bottom = ft.Container(
         content=ft.Row(controls=footer_buttons, spacing=10), 
-        height=100,
+        height=80,
         **STYL_RAMKI 
     )
 
@@ -933,14 +933,14 @@ def main(page: ft.Page):
     main_layout_column = ft.Column(
         controls=[frame_top, frame_middle, frame_bottom],
         expand=True,
-        spacing=10
+        spacing=2
     )
     
     # Dodajemy padding do głównego kontenera aplikacji, 
     # żeby zachować marginesy (10px) z Twojego oryginału, ale nie dla ESTOP
     main_layout_container = ft.Container(
         content=main_layout_column,
-        padding=10,
+        padding=2,
         expand=True
     )
 

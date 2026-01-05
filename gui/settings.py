@@ -314,7 +314,7 @@ class SettingsView(flet.Container):
 
         title_row = ft.Row(controls=[ft.Text(f"Tuning StallGuard - Oś J{self.selected_motor_index}", size=20, weight="bold"), ft.IconButton(icon=ft.icons.CLOSE, icon_size=24, tooltip="Zamknij", on_click=close_and_refresh)], alignment=ft.MainAxisAlignment.SPACE_BETWEEN)
 
-        self.tuning_dialog = ft.AlertDialog(title=title_row, title_padding=ft.padding.only(left=20, right=10, top=10, bottom=0), content=ft.Container(width=850, height=700, content=dialog_content), modal=True)
+        self.tuning_dialog = ft.AlertDialog(title=title_row, title_padding=ft.padding.only(left=20, right=10, top=10, bottom=0), content=ft.Container(width=850, height=500, content=dialog_content), modal=True)
         self.page.dialog = self.tuning_dialog
         self.tuning_dialog.open = True
         self.page.update()
@@ -561,7 +561,7 @@ class SettingsView(flet.Container):
 
         self.egrip_tuning_dialog = AlertDialog(
             title=Text("Electric Gripper Tuning"),
-            content=Container(width=550, height=650, content=dialog_content),
+            content=Container(width=550, height=500, content=dialog_content),
             actions=[ft.TextButton("Close & Save", on_click=close_and_save)]
         )
         self.page.dialog = self.egrip_tuning_dialog
