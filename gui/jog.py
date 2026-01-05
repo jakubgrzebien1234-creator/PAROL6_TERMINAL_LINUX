@@ -539,11 +539,46 @@ class JogView(flet.Container):
         else:
             joint_code = "UNK"
             if "(" in display_name: joint_code = display_name.split("(")[1].split(")")[0]
+            
             def mk_btn(txt, d, code):
-                c = flet.Container(content=flet.Text(txt, size=30, weight="bold", color="white"), bgcolor="#444444", border_radius=8, alignment=flet.alignment.center, height=65, shadow=flet.BoxShadow(blur_radius=2, color="black"), border=flet.border.all(1, "#666"))
-                gest = flet.GestureDetector(content=c, on_tap_down=lambda e: self.on_jog_start(e, code, d, gest), on_tap_up=lambda e: self.on_jog_stop(e, code, d, gest), on_long_press_end=lambda e: self.on_jog_stop(e, code, d, gest), on_pan_end=lambda e: self.on_jog_stop(e, code, d, gest))
-                return flet.Container(content=gest, expand=True)
-            return flet.Container(content=flet.Column([flet.Text(display_name, size=14, weight="bold", color="white", text_align="center"), flet.Row([mk_btn("-", "minus", joint_code), mk_btn("+", "plus", joint_code)], spacing=5, expand=True)], spacing=2), **container_style)
+                # Increased height (85), width fills space via max width
+                c = flet.Container(
+                    content=flet.Text(txt, size=30, weight="bold", color="white"),
+                    bgcolor="#444444",
+                    border_radius=8,
+                    alignment=flet.alignment.center,
+                    height=85,
+                    width=10000, # FORCE EXPAND INSIDE GESTURE DETECTOR
+                    shadow=flet.BoxShadow(blur_radius=2, color="black"),
+                    border=flet.border.all(1, "#666")
+                )
+                gest = flet.GestureDetector(
+                    content=c,
+                    on_tap_down=lambda e: self.on_jog_start(e, code, d, gest),
+                    on_tap_up=lambda e: self.on_jog_stop(e, code, d, gest),
+                    on_long_press_end=lambda e: self.on_jog_stop(e, code, d, gest),
+                    on_pan_end=lambda e: self.on_jog_stop(e, code, d, gest)
+                )
+                return flet.Container(content=gest, expand=True) # EXPAND KEY
+
+            # Layout: [-]  [J1]  [+]
+            return flet.Container(
+                content=flet.Row(
+                    controls=[
+                        mk_btn("-", "minus", joint_code),
+                        flet.Container(
+                            content=flet.Text(joint_code, size=24, weight="bold", color="cyan", text_align="center"),
+                            alignment=flet.alignment.center,
+                            width=60,      # Reduced width for label
+                            expand=False   # Do not expand label
+                        ),
+                        mk_btn("+", "plus", joint_code)
+                    ],
+                    alignment=flet.MainAxisAlignment.CENTER,
+                    spacing=5
+                ),
+                **container_style
+            )
 
     def _calculate_forward_kinematics(self):
         """

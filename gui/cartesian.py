@@ -256,9 +256,9 @@ class CartesianView(flet.Container):
         # ----------------------------------------------------------------------
         # Match JogView: A=Roll(X), B=Yaw(Z), C=Pitch(Y) - swapped B/C to match display
         axes_list = [
-            ("X Axis", "x"), ("A (Rot X)", "rx"),
-            ("Y Axis", "y"), ("B (Rot Z)", "rz"),
-            ("Z Axis", "z"), ("C (Rot Y)", "ry")
+            ("X", "x"), ("A", "rx"),
+            ("Y", "y"), ("B", "rz"),
+            ("Z", "z"), ("C", "ry")
         ]
 
         # Use Grid-like structure (Rows of 2)
@@ -940,12 +940,14 @@ class CartesianView(flet.Container):
         }
 
         def mk_btn(txt, direction):
+            # Matched JogView: Height=85, Width=10000 (Force Expand), Radius=8
             c = flet.Container(
                 content=flet.Text(txt, size=30, weight="bold", color="white"), 
                 bgcolor="#444444", 
                 border_radius=8, 
                 alignment=flet.alignment.center, 
-                height=65, 
+                height=85, 
+                width=10000,
                 shadow=flet.BoxShadow(blur_radius=2, color="black"), 
                 border=flet.border.all(1, "#666")
             )
@@ -959,12 +961,19 @@ class CartesianView(flet.Container):
             return flet.Container(content=gest, expand=True)
 
         return flet.Container(
-            content=flet.Column([
-                flet.Text(display_name, size=14, weight="bold", color="white", text_align="center"), 
-                flet.Row([
+            content=flet.Row(
+                controls=[
                     mk_btn("-", "minus"), 
+                    flet.Container(
+                        content=flet.Text(display_name, size=24, weight="bold", color="cyan", text_align="center"),
+                        alignment=flet.alignment.center,
+                        width=60,      # Fixed width for label (Same as Jog)
+                        expand=False
+                    ),
                     mk_btn("+", "plus")
-                ], spacing=5, expand=True)
-            ], spacing=2), 
+                ], 
+                alignment=flet.MainAxisAlignment.CENTER,
+                spacing=5
+            ), 
             **container_style
         )
