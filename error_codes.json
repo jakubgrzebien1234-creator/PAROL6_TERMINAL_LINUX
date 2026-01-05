@@ -1,0 +1,299 @@
+{
+    "error_codes": {
+        "E1": {
+            "level": "ERROR",
+            "message": "Not Homed - Robot requires homing before movement"
+        },
+        "E2": {
+            "level": "ERROR",
+            "message": "E-STOP Active - Emergency stop button pressed"
+        },
+        "E3": {
+            "level": "ERROR",
+            "message": "Syntax Error - Error detected in program"
+        },
+        "E4": {
+            "level": "ERROR",
+            "message": "Port Disconnected - No connection to robot"
+        },
+        "E5": {
+            "level": "WARNING",
+            "message": "Limit Switch - Robot hit the limit switch"
+        },
+        "W1": {
+            "level": "WARNING",
+            "message": "Stop - STOP button pressed"
+        },
+        "W2": {
+            "level": "WARNING",
+            "message": "Safe Move - SAFETY button pressed"
+        },
+        "OT1": {
+            "level": "WARNING",
+            "message": "Overtemperature Sensor 1 - Temperature above normal"
+        },
+        "OT2": {
+            "level": "WARNING",
+            "message": "Overtemperature Sensor 2 - Temperature above normal"
+        },
+        "OT3": {
+            "level": "WARNING",
+            "message": "Overtemperature Sensor 3 - Temperature above normal"
+        },
+        "OT4": {
+            "level": "WARNING",
+            "message": "Overtemperature Sensor 4 - Temperature above normal"
+        },
+        "CT1": {
+            "level": "ERROR",
+            "message": "Critical Temperature Sensor 1 - Temperature critical"
+        },
+        "CT2": {
+            "level": "ERROR",
+            "message": "Critical Temperature Sensor 2 - Temperature critical"
+        },
+        "CT3": {
+            "level": "ERROR",
+            "message": "Critical Temperature Sensor 3 - Temperature critical"
+        },
+        "CT4": {
+            "level": "ERROR",
+            "message": "Critical Temperature Sensor 4 - Temperature critical"
+        },
+        "EMM1": {
+            "level": "ERROR",
+            "message": "Error Missing Motor 1 - Motor 1 not responding"
+        },
+        "EMM2": {
+            "level": "ERROR",
+            "message": "Error Missing Motor 2 - Motor 2 not responding"
+        },
+        "EMM3": {
+            "level": "ERROR",
+            "message": "Error Missing Motor 3 - Motor 3 not responding"
+        },
+        "EMM4": {
+            "level": "ERROR",
+            "message": "Error Missing Motor 4 - Motor 4 not responding"
+        },
+        "EMM5": {
+            "level": "ERROR",
+            "message": "Error Missing Motor 5 - Motor 5 not responding"
+        },
+        "EMM6": {
+            "level": "ERROR",
+            "message": "Error Missing Motor 6 - Motor 6 not responding"
+        },
+        "IKE": {
+            "level": "ERROR",
+            "message": "Inverse Kinematics Error - Position unreachable"
+        },
+        "OOR1": {
+            "level": "ERROR",
+            "message": "Out Of Range Joint 1 - Joint angle exceeds limits"
+        },
+        "OOR2": {
+            "level": "ERROR",
+            "message": "Out Of Range Joint 2 - Joint angle exceeds limits"
+        },
+        "OOR3": {
+            "level": "ERROR",
+            "message": "Out Of Range Joint 3 - Joint angle exceeds limits"
+        },
+        "OOR4": {
+            "level": "ERROR",
+            "message": "Out Of Range Joint 4 - Joint angle exceeds limits"
+        },
+        "OOR5": {
+            "level": "ERROR",
+            "message": "Out Of Range Joint 5 - Joint angle exceeds limits"
+        },
+        "OOR6": {
+            "level": "ERROR",
+            "message": "Out Of Range Joint 6 - Joint angle exceeds limits"
+        },
+        "COM": {
+            "level": "ERROR",
+            "message": "Communication Timeout - No response from controller"
+        },
+        "COL": {
+            "level": "ERROR",
+            "message": "Collision Detected - Unexpected resistance"
+        },
+        "OVL": {
+            "level": "ERROR",
+            "message": "Overload Detected - Motor current too high"
+        },
+        "GRE": {
+            "level": "ERROR",
+            "message": "Gripper Error - Gripper malfunction"
+        },
+        "NRL1": {
+            "level": "WARNING",
+            "message": "Near Limit Joint 1 - Approaching joint limit"
+        },
+        "NRL2": {
+            "level": "WARNING",
+            "message": "Near Limit Joint 2 - Approaching joint limit"
+        },
+        "NRL3": {
+            "level": "WARNING",
+            "message": "Near Limit Joint 3 - Approaching joint limit"
+        },
+        "NRL4": {
+            "level": "WARNING",
+            "message": "Near Limit Joint 4 - Approaching joint limit"
+        },
+        "NRL5": {
+            "level": "WARNING",
+            "message": "Near Limit Joint 5 - Approaching joint limit"
+        },
+        "NRL6": {
+            "level": "WARNING",
+            "message": "Near Limit Joint 6 - Approaching joint limit"
+        },
+        "SLW": {
+            "level": "WARNING",
+            "message": "Slow Response - Communication delay detected"
+        },
+        "HMS": {
+            "level": "WARNING",
+            "message": "Homing Skipped - Position confirmed manually"
+        },
+        "CFG": {
+            "level": "WARNING",
+            "message": "Config Mismatch - PC and controller config differ"
+        },
+        "GRW": {
+            "level": "WARNING",
+            "message": "Gripper Warning - Object not detected"
+        },
+        "SPD": {
+            "level": "WARNING",
+            "message": "Speed Limited - Speed automatically reduced"
+        },
+        "STL1": {
+            "level": "WARNING",
+            "message": "Stall Detected Motor 1 - Motor blocked"
+        },
+        "STL2": {
+            "level": "WARNING",
+            "message": "Stall Detected Motor 2 - Motor blocked"
+        },
+        "STL3": {
+            "level": "WARNING",
+            "message": "Stall Detected Motor 3 - Motor blocked"
+        },
+        "STL4": {
+            "level": "WARNING",
+            "message": "Stall Detected Motor 4 - Motor blocked"
+        },
+        "STL5": {
+            "level": "WARNING",
+            "message": "Stall Detected Motor 5 - Motor blocked"
+        },
+        "STL6": {
+            "level": "WARNING",
+            "message": "Stall Detected Motor 6 - Motor blocked"
+        },
+        "HMD": {
+            "level": "INFO",
+            "message": "Homing Done - Robot successfully homed"
+        },
+        "CON": {
+            "level": "INFO",
+            "message": "Connected - Communication established"
+        },
+        "DIS": {
+            "level": "INFO",
+            "message": "Disconnected - Communication closed"
+        },
+        "RDY": {
+            "level": "INFO",
+            "message": "Ready - Robot ready for operation"
+        },
+        "PRG": {
+            "level": "INFO",
+            "message": "Program Completed - Task finished successfully"
+        }
+    },
+    "categories": {
+        "system": [
+            "E1",
+            "E2",
+            "E3",
+            "E4",
+            "E5",
+            "W1",
+            "W2"
+        ],
+        "temperature": [
+            "OT1",
+            "OT2",
+            "OT3",
+            "OT4",
+            "CT1",
+            "CT2",
+            "CT3",
+            "CT4"
+        ],
+        "motors": [
+            "EMM1",
+            "EMM2",
+            "EMM3",
+            "EMM4",
+            "EMM5",
+            "EMM6"
+        ],
+        "kinematics": [
+            "IKE",
+            "OOR1",
+            "OOR2",
+            "OOR3",
+            "OOR4",
+            "OOR5",
+            "OOR6"
+        ],
+        "communication": [
+            "COM",
+            "SLW",
+            "CFG"
+        ],
+        "safety": [
+            "COL",
+            "OVL",
+            "NRL1",
+            "NRL2",
+            "NRL3",
+            "NRL4",
+            "NRL5",
+            "NRL6"
+        ],
+        "gripper": [
+            "GRE",
+            "GRW"
+        ],
+        "stall": [
+            "STL1",
+            "STL2",
+            "STL3",
+            "STL4",
+            "STL5",
+            "STL6"
+        ],
+        "status": [
+            "HMS",
+            "SPD",
+            "HMD",
+            "CON",
+            "DIS",
+            "RDY",
+            "PRG"
+        ]
+    },
+    "levels": {
+        "ERROR": "Critical issue - robot operation blocked",
+        "WARNING": "Non-critical issue - operation may continue with caution",
+        "INFO": "Informational message - no action required"
+    }
+}

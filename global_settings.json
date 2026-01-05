@@ -1,0 +1,13 @@
+{
+    "ot_temp": 68,
+    "ct_temp": 36,
+    "max_speed": 100,
+    "safety_delay": 581,
+    "idle_timeout": 300,
+    "sensor_4_ct": 90,
+    "sensor_4_ot": 52,
+    "sensor_2_ct": 90,
+    "sensor_1_ct": 90,
+    "sensor_3_ct": 90,
+    "mag_time": 1
+}
