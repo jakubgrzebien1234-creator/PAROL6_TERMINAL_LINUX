@@ -1005,7 +1005,11 @@ class SettingsView(flet.Container):
             return Row(controls=[
                 Container(content=Column(controls=btn_ctrls, spacing=5, expand=True), **motor_panel_style, width=130, expand=False), # Reduced spacing and padding
                 Container(content=Column(controls=[Container(content=top_toolbar, **podramka_style), self.sliders_column_container], spacing=10, expand=True), **{**podramka_style, "alignment": alignment.top_center}, expand=7),
-                Column(controls=[Container(content=self.motor_display, **podramka_style, height=50), Container(content=Image(src="stepper60.png", fit=flet.ImageFit.CONTAIN, expand=True), **podramka_obrazkowa_style, expand=1), Row(controls=[send_save_button])], spacing=10, expand=2)
+                Column(controls=[
+                    Container(content=self.motor_display, **podramka_style, height=50), 
+                    Container(content=Image(src="stepper60.png", fit=flet.ImageFit.CONTAIN, expand=True), **podramka_obrazkowa_style, height=300, expand=True), 
+                    Row(controls=[send_save_button])
+                ], spacing=10, expand=2)
             ], spacing=10, expand=True)
 
         elif image_name == "global_settings":

@@ -3,7 +3,7 @@ import time
 import os
 import threading
 import serial.tools.list_ports 
-
+import screeninfo
 # --- Import widoków ---
 try:
     from gui.cartesian import CartesianView
@@ -20,13 +20,15 @@ except ImportError as e:
 from PIL import Image
 
 def main(page: ft.Page):
+    screen = screeninfo.get_monitors()[0]
     # --- Ustawienia strony ---
     page.title = "PAROL6 Operator Panel by Jakub Grzebień"
     page.theme_mode = ft.ThemeMode.DARK 
     
     # Ustawienia rozmiaru okna
-    page.window_width = 1024
-    page.window_height = 600
+
+    page.window_width = screen.width
+    page.window_height = screen.height
     page.window_resizable = False 
     page.window_maximizable = False 
     page.window_frameless = True 
