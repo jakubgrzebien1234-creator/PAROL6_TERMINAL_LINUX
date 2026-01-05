@@ -1007,7 +1007,7 @@ class SettingsView(flet.Container):
                 Container(content=Column(controls=[Container(content=top_toolbar, **podramka_style), self.sliders_column_container], spacing=10, expand=True), **{**podramka_style, "alignment": alignment.top_center}, expand=7),
                 Column(controls=[
                     Container(content=self.motor_display, **podramka_style, height=50), 
-                    Container(content=Image(src="stepper60.PNG", fit=flet.ImageFit.CONTAIN), **podramka_obrazkowa_style, height=300, width=200, alignment=alignment.center), 
+                    Container(content=Image(src="stepper60.PNG", fit=flet.ImageFit.CONTAIN, expand=True), **podramka_obrazkowa_style, expand=True), 
                     Row(controls=[send_save_button])
                 ], spacing=10, expand=2)
             ], spacing=10, expand=True)
