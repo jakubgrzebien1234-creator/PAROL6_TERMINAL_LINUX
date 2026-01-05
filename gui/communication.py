@@ -113,6 +113,7 @@ class UARTCommunicator:
         try:
             clean_message = message.strip() + '\n'
             self.serial_connection.write(clean_message.encode('utf-8'))
+            self.serial_connection.flush()
             print(f"[UART TX] Wysłano: {clean_message.strip()}")
             return True
         except Exception as e:

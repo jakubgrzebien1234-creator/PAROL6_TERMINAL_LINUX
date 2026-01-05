@@ -152,15 +152,17 @@ class JogView(flet.Container):
 
     def update_joints_and_fk(self, joint_values: dict):
         for k, v in joint_values.items():
-            self.current_raw_values[k] = v 
+            # Invert feedback to match URDF model
+            corrected_val = -v
+            self.current_raw_values[k] = corrected_val 
             
             # Only sync on INITIAL startup (before first jog) to avoid feedback overwriting user targets
             if not self.initial_sync_done:
-                self.internal_target_values[k] = v
+                self.internal_target_values[k] = corrected_val
             
-            # Display actual feedback value from robot (inverted sign for display convention)
+            # Display normalized value
             if k in self.position_value_labels:
-                self.position_value_labels[k].value = f"{-v:.2f}°"
+                self.position_value_labels[k].value = f"{corrected_val:.2f}°"
         
         if joint_values:
             self.initial_sync_done = True

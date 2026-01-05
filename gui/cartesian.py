@@ -590,7 +590,7 @@ class CartesianView(flet.Container):
                     current_local = current_local + (diff / dist) * step_size
                     self.commanded_joints = current_local.tolist()
                     self.send_current_pose()
-                    time.sleep(0.05)
+                    time.sleep(0.08)
             finally:
                 self.is_jogging = False
                 self.last_jog_time = time.time()

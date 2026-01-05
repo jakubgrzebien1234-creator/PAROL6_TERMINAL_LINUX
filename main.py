@@ -30,7 +30,7 @@ def main(page: ft.Page):
     page.window_resizable = False 
     page.window_maximizable = False 
     page.window_frameless = True 
-    page.window_full_screen = True 
+    page.window_full_screen = False 
     
     # Inicjalizacja komunikatora
     if UARTCommunicator:
@@ -485,6 +485,7 @@ def main(page: ft.Page):
             """
             Główna funkcja parsująca dane z UART w main.py
             """
+            
             data_string = data_string.strip()
             if not data_string: return
             # ==========================================================
@@ -649,23 +650,22 @@ def main(page: ft.Page):
             # 7a. LIMIT SWITCHES (H=Hit/Home, R=Release)
             # ==========================================================
             # Format: H1, H2... (Pressed) / R1, R2... (Released)
-            if data_string.startswith("H") or data_string.startswith("R"):
-                import re
-                # Check for Hit (H1..6)
-                match_h = re.match(r"^H(\d+)$", data_string)
-                if match_h:
-                    idx = match_h.group(1)
-                    if "STATUS" in views and views["STATUS"]:
-                        views["STATUS"].update_status(f"LS{idx}", "PRESSED", ft.colors.RED_400)
-                    return
-                
-                # Check for Release (R1..6)
-                match_r = re.match(r"^R(\d+)$", data_string)
-                if match_r:
-                    idx = match_r.group(1)
-                    if "STATUS" in views and views["STATUS"]:
-                        views["STATUS"].update_status(f"LS{idx}", "RELEASED", ft.colors.GREEN_400)
-                    return
+            # Handle potential '$' prefix like '$H2'
+            clean_str = data_string.strip().lstrip('$')
+            
+            if clean_str.startswith("H") and len(clean_str) > 1 and clean_str[1:].isdigit():
+                 idx = clean_str[1:]
+                 print(f"[MAIN] Limit Switch H{idx} PRESSED (Key: LS{idx})")
+                 if "STATUS" in views and views["STATUS"]:
+                     views["STATUS"].update_status(f"LS{idx}", "PRESSED", ft.colors.RED_400)
+                 return
+            
+            if clean_str.startswith("R") and len(clean_str) > 1 and clean_str[1:].isdigit():
+                 idx = clean_str[1:]
+                 print(f"[MAIN] Limit Switch R{idx} RELEASED (Key: LS{idx})")
+                 if "STATUS" in views and views["STATUS"]:
+                     views["STATUS"].update_status(f"LS{idx}", "RELEASED", ft.colors.GREEN_400)
+                 return
 
             # ==========================================================
             # 8. OBSŁUGA DANYCH PROT_ (Temperatury i Zasilanie)
