@@ -298,7 +298,8 @@ class SettingsView(flet.Container):
         reset_button = ft.IconButton(icon=ft.icons.REFRESH, icon_color="white", bgcolor="blue", tooltip="ODBLOKUJ", on_click=on_reset_click)
 
         def close_and_refresh(e):
-            self.page.close(self.tuning_dialog)
+            self.tuning_dialog.open = False
+            self.page.update()
             if self.active_slider_set_id == 4: self._on_slider_set_select(4) 
 
         dialog_content = ft.Column([
@@ -314,7 +315,8 @@ class SettingsView(flet.Container):
         title_row = ft.Row(controls=[ft.Text(f"Tuning StallGuard - Oś J{self.selected_motor_index}", size=20, weight="bold"), ft.IconButton(icon=ft.icons.CLOSE, icon_size=24, tooltip="Zamknij", on_click=close_and_refresh)], alignment=ft.MainAxisAlignment.SPACE_BETWEEN)
 
         self.tuning_dialog = ft.AlertDialog(title=title_row, title_padding=ft.padding.only(left=20, right=10, top=10, bottom=0), content=ft.Container(width=850, height=700, content=dialog_content), modal=True)
-        self.page.open(self.tuning_dialog)
+        self.page.dialog = self.tuning_dialog
+        self.tuning_dialog.open = True
         self.page.update()
 
     def _reset_stall_status(self, e):
@@ -438,7 +440,8 @@ class SettingsView(flet.Container):
             self.homing_loading_dialog.open = False
             self.page.update()
             try:
-                self.page.close(self.homing_loading_dialog)
+                # self.page.close(self.homing_loading_dialog)
+                pass
             except: pass
             self.homing_loading_dialog = None
 
@@ -553,14 +556,16 @@ class SettingsView(flet.Container):
             # Zapisz przed zamknięciem
             self.gripper_settings_data["SGrip"] = list(self.current_gripper_values)
             self._save_gripper_settings()
-            self.page.close(self.egrip_tuning_dialog)
+            self.egrip_tuning_dialog.open = False
+            self.page.update()
 
         self.egrip_tuning_dialog = AlertDialog(
             title=Text("Electric Gripper Tuning"),
             content=Container(width=550, height=650, content=dialog_content),
             actions=[ft.TextButton("Close & Save", on_click=close_and_save)]
         )
-        self.page.open(self.egrip_tuning_dialog)
+        self.page.dialog = self.egrip_tuning_dialog
+        self.egrip_tuning_dialog.open = True
         self.page.update()
 
     def _send_egrip_cmd(self, command_str):
@@ -573,7 +578,8 @@ class SettingsView(flet.Container):
         if target_page:
             loading_content = Container(width=300, height=150, bgcolor="#252525", border_radius=10, padding=20, content=Column([Text("Sending Data...", size=16, weight="bold"), flet.ProgressBar(width=260, color=colors.BLUE_400), Text("Don't turn off the power", size=12, color="red")], alignment=MainAxisAlignment.CENTER))
             loading_dialog = AlertDialog(content=loading_content, modal=True, bgcolor=colors.TRANSPARENT)
-            target_page.open(loading_dialog)
+            target_page.dialog = loading_dialog
+            loading_dialog.open = True
             target_page.update()
 
         try:
@@ -605,8 +611,9 @@ class SettingsView(flet.Container):
         except Exception as e: print(f"Error: {e}")
         finally:
             if target_page and loading_dialog:
-                target_page.close(loading_dialog)
-                target_page.open(flet.SnackBar(content=Text("Configuration Complete"), bgcolor=colors.GREEN_700))
+                loading_dialog.open = False
+                target_page.snack_bar = flet.SnackBar(content=Text("Configuration Complete"), bgcolor=colors.GREEN_700)
+                target_page.snack_bar.open = True
                 target_page.update()
 
     def _build_slider_ui(self, structure_configs: list, value_configs: list, is_global: bool = False):
