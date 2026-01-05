@@ -559,8 +559,7 @@ class JogView(flet.Container):
                     on_long_press_end=lambda e: self.on_jog_stop(e, code, d, gest),
                     on_pan_start=lambda e: self.on_jog_start(e, code, d, gest),
                     on_pan_update=lambda e: None,
-                    on_pan_end=lambda e: self.on_jog_stop(e, code, d, gest),
-                    on_tap_cancel=lambda e: self.on_jog_stop(e, code, d, gest)
+                    on_pan_end=lambda e: self.on_jog_stop(e, code, d, gest)
                 )
                 return flet.Container(content=gest, expand=True) # EXPAND KEY
 
